@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="uZoneTec">
+<title>HIT RCMS</title>
+<link rel="shortcut icon" href="content/favicon.ico" />
+<link rel="stylesheet" href="content/jquery.tablesorter.min.css">
+<link rel="stylesheet" href="content/bootstrap.min.css" />
+<link rel="stylesheet" href="content/bootstrap-datetimepicker.min.css" />
+<link rel="stylesheet" href="content/uzone.css">
+<script type="text/javascript" src="src/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="src/jquery.tablesorter.min.js"></script>
+<script type="text/javascript" src="src/bootstrap.min.js"></script>
+<script type="text/javascript" src="src/numeral/numeral.min.js"></script>
+<script type="text/javascript" src="src/moment.min.js"></script>
+<script type="text/javascript" src="src/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="src/vue.min.js"></script>
+<script type="text/javascript" src="src/vue-resource.min.js"></script>
+<script type="text/javascript" src="src/uzone.js"></script>
+<script type="text/javascript" src="src/uzone.controls.js"></script>
+<script type="text/javascript" src="src/echarts.min.js"></script>
+
+<body>
+    <div id="app">
+        <div v-html='htmlData'></div>
+        <div :z="change|fliter1">{{test((function(){ setInterval(function(){ console.log(1) ;return Math.random()},1023); return 3 })() )}}
+        </div>
+        <div :class='[{active:change},"R"]'>chassTest</div>
+        <cao class="template"></cao>
+    </div>
+</body>
+<script>
+    Vue.component(
+        'cao', {
+            template: '<div>component</div>'
+        }
+
+    )
+    var app = new Vue({
+        el: '#app',
+        data: {
+            htmlData: '<strong>hello</strong>',
+            appA: 'test1',
+            change: 5
+        },
+        methods: {
+            test: function(v) {
+                return v + 3
+            }
+        },
+        filters: {
+            fliter1: function(v) {
+                return v + 5
+            }
+        },
+        mounted: function() {
+            var self = this
+            setInterval(function() {
+                self.change++
+            }, 1024)
+        }
+    })
+</script>
+
+</html>
