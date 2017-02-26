@@ -40,16 +40,23 @@
         <span v-for="key in item2"> {{key.val}}</span><br>
         <span v-for="i in item2Filter">  {{i.val}}</span><br>
         <button type="button" class="btn btn-default" @click="targ">button</button>
-
+        <hai scope="props"><strong>test</strong><em>{{props.text}}</em></hai>
     </div>
 </body>
 <script>
+    var child = {
+        template: '<div><slot text="hello"></slot>template</div>'
+    }
+    Vue.component(
+        'hai', child
+    )
     Vue.component(
         'cao', {
             template: '<div>component</div>'
         }
 
     )
+
     var app = new Vue({
         el: '#app',
         data: {
