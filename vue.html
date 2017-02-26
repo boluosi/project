@@ -28,10 +28,19 @@
 <body>
     <div id="app">
         <div v-html='htmlData'></div>
-        <div :z="change|fliter1">{{test((function(){ setInterval(function(){ console.log(1) ;return Math.random()},1023); return 3 })() )}}
+        <div :z="change|fliter1">{{test((function(){ setInterval(function(){ return Math.random()},1023); return 3 })() )}}
         </div>
         <div :class='[{active:change},"R"]'>chassTest</div>
         <cao class="template"></cao>
+        <!--<div>{{filt|fter}}</div>-->
+        <div v-for="(val,key,index) in item">{{index}}--{{key}}---{{val}}--</div>
+        <span v-for="i in 10">{{i}}</span>
+        <br />
+        <div v-for="(val,key,index) in item3">{{index}}--{{key}}---{{val}}--</div>
+        <span v-for="key in item2"> {{key.val}}</span><br>
+        <span v-for="i in item2Filter">  {{i.val}}</span><br>
+        <button type="button" class="btn btn-default" @click="targ">button</button>
+
     </div>
 </body>
 <script>
@@ -46,16 +55,44 @@
         data: {
             htmlData: '<strong>hello</strong>',
             appA: 'test1',
-            change: 5
+            change: 5,
+            filt: 2,
+            item: {
+                message: 23,
+                id: 89
+            },
+            item2: [{
+                'val': 123
+            }, {
+                'val': 345
+            }, {
+                'val': 678
+            }],
+            item3: {
+
+            }
+        },
+        computed: {
+            item2Filter: function() {
+                return this.item2.filter(function(v) {
+                    return v.val % 2 == 1
+                })
+            }
         },
         methods: {
             test: function(v) {
                 return v + 3
+            },
+            targ: function(v) {
+                alert(v.target.tagName)
             }
         },
         filters: {
             fliter1: function(v) {
                 return v + 5
+            },
+            fter: function() {
+                return Math.random()
             }
         },
         mounted: function() {
