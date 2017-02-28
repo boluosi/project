@@ -40,10 +40,25 @@
         <span v-for="key in item2"> {{key.val}}</span><br>
         <span v-for="i in item2Filter">  {{i.val}}</span><br>
         <button type="button" class="btn btn-default" @click="targ">button</button>
-        <hai scope="props"><strong>test</strong><em>{{props.text}}</em></hai>
+        <hai><strong>test</strong></hai>
+        <song ear="3">hahahahahaha</song>
     </div>
 </body>
 <script>
+    Vue.component(
+        'song', {
+            render: function(a) {
+                return a(
+                    'h' + this.ear,
+                    this.$slots.default
+                )
+            },
+            props: {
+                ear: String,
+                required: true
+            }
+        }
+    )
     var child = {
         template: '<div><slot text="hello"></slot>template</div>'
     }
